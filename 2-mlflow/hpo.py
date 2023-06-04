@@ -30,6 +30,9 @@ def load_pickle(filename):
 )
 def run_optimization(data_path: str, num_trials: int):
 
+    mlflow.set_tracking_uri("sqlite:///mlflow.db")
+    mlflow.set_experiment("random-forest-hyperopt")
+
     X_train, y_train = load_pickle(os.path.join(data_path, "train.pkl"))
     X_val, y_val = load_pickle(os.path.join(data_path, "val.pkl"))
 
@@ -43,16 +46,15 @@ def run_optimization(data_path: str, num_trials: int):
             'n_jobs': -1
         }
 
-        rf = RandomForestRegressor(**params)
-        rf.fit(X_train, y_train)
-        y_pred = rf.predict(X_val)
+        with mlflow.start_run():
+            mlflow.log_params(params)
 
-        # with open('./artifacts/randomforest.bin', 'wb') as f_out:
-        #     pickle.dump(rf, f_out)
+            rf = RandomForestRegressor(**params)
+            rf.fit(X_train, y_train)
+            y_pred = rf.predict(X_val)
+            rmse = mean_squared_error(y_val, y_pred, squared=False)
 
-        rmse = mean_squared_error(y_val, y_pred, squared=False)
-
-        # mlflow.log_artifact(local_path="artifacts/randomforest.bin", artifact_path="models_pickled")
+            mlflow.log_metric("rmse", rmse)
 
         return rmse
 
@@ -60,8 +62,5 @@ def run_optimization(data_path: str, num_trials: int):
     study = optuna.create_study(direction="minimize", sampler=sampler)
     study.optimize(objective, n_trials=num_trials)
 
-    mlflow.log_metric("rmse", study.best_value)
-
 if __name__ == '__main__':
-    with mlflow.start_run():
-        run_optimization()
+    run_optimization()
