@@ -1,3 +1,3 @@
 # mlops-zoomcamp
 
-For mlops zoomcamp projecct
+For mlops zoomcamp project

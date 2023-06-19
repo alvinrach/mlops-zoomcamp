@@ -1,0 +1,54 @@
+{
+    "os": "Linux-5.15.0-1039-azure-x86_64-with-glibc2.31",
+    "python": "3.10.8",
+    "heartbeatAt": "2023-06-19T09:02:09.956230",
+    "startedAt": "2023-06-19T09:02:09.264222",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--wandb_project",
+        "project-zoomcamp",
+        "--wandb_entity",
+        "alvinrach",
+        "--data_artifact",
+        "alvinrach/project-zoomcamp/NYC-Taxi:v0"
+    ],
+    "state": "running",
+    "program": "/workspaces/mlops-zoomcamp/2-wandb/sweep.py",
+    "codePath": "2-wandb/sweep.py",
+    "git": {
+        "remote": "https://github.com/alvinrach/mlops-zoomcamp",
+        "commit": "a2b01804c359a26e54ed97044366100372667e82"
+    },
+    "email": "80054848+alvinrach@users.noreply.github.com",
+    "root": "/workspaces/mlops-zoomcamp",
+    "host": "codespaces-a51ba0",
+    "username": "codespace",
+    "executable": "/workspaces/mlops-zoomcamp/.env/bin/python",
+    "cpu_count": 1,
+    "cpu_count_logical": 2,
+    "cpu_freq": {
+        "current": 2593.904,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2593.904,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2593.904,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 31.32598876953125,
+        "used": 12.927040100097656
+    },
+    "memory": {
+        "total": 3.8339385986328125
+    }
+}
